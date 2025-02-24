@@ -1,0 +1,33 @@
+import queue
+
+class FileQueue:
+    def __init__(self):
+        self.q = queue.Queue()
+
+    def enqueue(self, file_path):
+        """Add a file path to the queue."""
+        self.q.put(file_path)
+        print(f"Added to queue: {file_path}")
+
+    def dequeue(self):
+        """Remove and return a file from the queue."""
+        if not self.q.empty():
+            file_path = self.q.get()
+            print(f"Processing file: {file_path}")
+            return file_path
+        else:
+            print("Queue is empty!")
+            return None
+
+    def is_empty(self):
+        """Check if the queue is empty."""
+        return self.q.empty()
+
+# Example Usage
+if __name__ == "__main__":
+    fq = FileQueue()
+    fq.enqueue("file1.txt")
+    fq.enqueue("file2.txt")
+
+    while not fq.is_empty():
+        fq.dequeue()
